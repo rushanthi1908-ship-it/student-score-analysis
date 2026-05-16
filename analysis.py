@@ -1,23 +1,25 @@
-import pandas as pd
 import matplotlib.pyplot as plt
 
 
-data = pd.read_csv("students.csv")
+students = ["A", "B", "C", "D", "E"]
+marks = [78, 85, 90, 66, 74]
 
 
-data["Average"] = data[["Maths", "Science", "English"]].mean(axis=1)
+average = sum(marks) / len(marks)
+highest = max(marks)
+lowest = min(marks)
 
-print("Student Data:\n", data)
+print("Average Marks:", average)
+print("Highest Marks:", highest)
+print("Lowest Marks:", lowest)
 
-
-top_student = data.loc[data["Average"].idxmax()]
-print("\nTop Performer:\n", top_student)
-
-
-subject_avg = data[["Maths", "Science", "English"]].mean()
-print("\nSubject Averages:\n", subject_avg)
-
-
-subject_avg.plot(kind='bar', title="Subject Average Scores")
+plt.bar(students, marks)
+plt.title("Student Performance")
+plt.xlabel("Students")
 plt.ylabel("Marks")
+
+
+plt.savefig("performance_graph.png")
+
+
 plt.show()
